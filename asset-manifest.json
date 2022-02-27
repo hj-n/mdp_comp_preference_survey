@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mdp_comp_preference_survey/static/css/main.71e747a5.css",
+    "main.js": "/mdp_comp_preference_survey/static/js/main.e163c616.js",
+    "index.html": "/mdp_comp_preference_survey/index.html",
+    "main.71e747a5.css.map": "/mdp_comp_preference_survey/static/css/main.71e747a5.css.map",
+    "main.e163c616.js.map": "/mdp_comp_preference_survey/static/js/main.e163c616.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71e747a5.css",
+    "static/js/main.e163c616.js"
+  ]
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.71e747a5.css","mappings":"AAAA,YACC,gBAAiB,CACjB,iBAAkB,CAClB,eACD,CAEA,OAEC,WAAY,CACZ,WAAW,CAFX,UAGD","sources":["components/Survey.css"],"sourcesContent":[".radioScore {\n\tmargin-left: 15px;\n\tmargin-right: 15px;\n\tmargin-top: 20px;\n}\n\nbutton {\n\twidth: 70px;\n\theight: 35px;\n\tmargin: 15px\n}"],"names":[],"sourceRoot":""}

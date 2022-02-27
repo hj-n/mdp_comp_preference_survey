@@ -33,7 +33,6 @@ const Survey = (props) => {
 	const [projectionScores, setProjectionScores] = useState(Array(projectionNum).fill(-1));
 	const [currProjIdx, setCurrProjIdx] = useState(0);
 
-	console.log(projectionScores);
 
 	const onChangeScoreRadio = (score) => {
 		return (e) => {
@@ -45,8 +44,39 @@ const Survey = (props) => {
 
 	const onClickButton = (newProjIdx) => {
 		return (e) => {
+			if (newProjIdx === -1 || newProjIdx === projectionNum) {
+				return;
+			}
 			setCurrProjIdx(newProjIdx);
 		}
+	}
+
+	const isScoringFinished = () =>{
+		return projectionScores.every(score => score !== -1);
+	}
+
+	const onClickSaveButton = (e) => {
+		// change the order of projection scores to match the order of projectionOrder
+		const newProjectionScores = [];
+		for (let i = 0; i < projectionOrder.length; i++) {
+			newProjectionScores.push(projectionScores[projectionOrder[i]]);
+		}
+
+		(async () => {
+			const fileName = "result.json";
+			const json = JSON.stringify(newProjectionScores);
+			const blob = new Blob([json],{type:'application/json'});
+			const href = await URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = href;
+			link.download = fileName;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+
+		})();
+		
+
 	}
 
 	return (
@@ -76,6 +106,10 @@ const Survey = (props) => {
 						</div>
 						<button onClick={onClickButton(currProjIdx + 1)}>Next</button>
 					</div>
+					<div style={{display: "flex", justifyContent: "center"}}>
+						<button style={{ width: 200}} disabled={!isScoringFinished()} onClick={onClickSaveButton}>Save the result!!</button>
+					</div>
+					
 					
 				</div>
 				<div>

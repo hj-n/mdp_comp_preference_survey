@@ -7,7 +7,8 @@ function App({match}) {
   const gridCellSize = 70;
   const gridMargin = 5;
   const column = 16;
-  const projectionNum = 150;
+  // const projectionNum = 150;
+  const projectionNum = 5; // for test
   const mainViewRadius = 7.5;
   const gridCellRadius = 2;
 

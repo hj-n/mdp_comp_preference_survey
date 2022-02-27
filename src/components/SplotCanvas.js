@@ -19,6 +19,8 @@ const SplotCanvas = (props) => {
 			const width = canvas.width;
 			const height = canvas.height;
 
+			ctx.clearRect(0, 0, width, height);
+
 			const xScale = d3.scaleLinear().range([0, width]).domain(d3.extent(ld, d => d[0]));
 			const yScale = d3.scaleLinear().range([height, 0]).domain(d3.extent(ld, d => d[1]));
 
@@ -36,7 +38,7 @@ const SplotCanvas = (props) => {
 				ctx.closePath();
 			});
 		}
-
+		
 		drawScatterplot();
 	});
 
@@ -47,7 +49,7 @@ const SplotCanvas = (props) => {
 				height={props.size * 2}
 				ref={canvasRef}
 				style={{
-					border: "1px solid black",
+					border: props.isCurr ? "3px solid black": "1px solid black",
 					width: props.size,
 					height: props.size
 				}}

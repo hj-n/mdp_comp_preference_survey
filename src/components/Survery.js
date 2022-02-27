@@ -10,10 +10,7 @@ const Survey = (props) => {
 	const projectionNum = props.projectionNum;
 
 
-	// generate a array of projectionNum with random order
-	const projectionOrder = [];
-	for (let i = 0; i < projectionNum; i++) projectionOrder.push(i); 
-	projectionOrder.sort(() => Math.random() - 0.5);
+	const projectionOrder = props.projectionOrder;
 
 
 	// generate a base array to construct a grid
@@ -36,6 +33,22 @@ const Survey = (props) => {
 	const [projectionScores, setProjectionScores] = useState(Array(projectionNum).fill(-1));
 	const [currProjIdx, setCurrProjIdx] = useState(0);
 
+	console.log(projectionScores);
+
+	const onChangeScoreRadio = (score) => {
+		return (e) => {
+			const currScores = [...projectionScores];
+			currScores[currProjIdx] = score;
+			setProjectionScores(currScores);
+		}
+	}
+
+	const onClickButton = (newProjIdx) => {
+		return (e) => {
+			setCurrProjIdx(newProjIdx);
+		}
+	}
+
 	return (
 		<div>
 			<div style={{display: "flex"}}>
@@ -45,17 +58,23 @@ const Survey = (props) => {
 						isLabel={props.isLabel}
 						projectionIdx={projectionOrder[currProjIdx]}
 						radius={props.mainViewRadius}
+						makeScoreBar={false}
 					/>
 					<div style={{display: "flex", justifyContent: "center"}}>
-						<button>Prev</button>
+						<button onClick={onClickButton(currProjIdx - 1)}>Prev</button>
 						<div style={{display: "flex"}}>
-							<div className="radioScore"><input type="radio" id="1" name="score" value="1"></input> 1 </div>
-							<div className="radioScore"><input type="radio" id="2" name="score" value="2"></input> 2 </div>
-							<div className="radioScore"><input type="radio" id="3" name="score" value="3"></input> 3 </div>
-							<div className="radioScore"><input type="radio" id="4" name="score" value="4"></input> 4 </div>
-							<div className="radioScore"><input type="radio" id="5" name="score" value="5"></input> 5 </div>
+							{/* Convert below radio code to for-loop form */}
+							{[1, 2, 3, 4, 5].map((score) => {
+								return (
+									<div className="radioScore" key={score}>
+										<input type="radio" id={score} name="score" value={score} 
+													checked={projectionScores[currProjIdx] === score}
+													onChange={onChangeScoreRadio(score)}
+										></input> {score} 
+								</div>)
+							})}
 						</div>
-						<button>Next</button>
+						<button onClick={onClickButton(currProjIdx + 1)}>Next</button>
 					</div>
 					
 				</div>
@@ -72,6 +91,11 @@ const Survey = (props) => {
 												isLabel={props.isLabel}
 												projectionIdx={projectionOrder[i * column + j]}
 												radius={props.gridCellRadius}
+												isCurr={currProjIdx === i * column + j ? true: false}
+												score={projectionScores[i * column + j]}
+												setCurrProjIdx={setCurrProjIdx}
+												idx={i * column + j}
+												makeScoreBar={true}
 											/>
 											</div>
 										)

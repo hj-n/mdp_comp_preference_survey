@@ -15,6 +15,10 @@ function App({match}) {
   const labelStr = urls[urls.length - 1];
   const isLabel = labelStr === "label";
 
+  // generate a array of projectionNum with random order
+	const projectionOrder = [];
+	for (let i = 0; i < projectionNum; i++) projectionOrder.push(i); 
+	projectionOrder.sort(() => Math.random() - 0.5);
 
 
   return (
@@ -31,6 +35,7 @@ function App({match}) {
         isLabel={isLabel}
         mainViewRadius={mainViewRadius}
         gridCellRadius={gridCellRadius}
+        projectionOrder={projectionOrder}
       />
     </div>
   );

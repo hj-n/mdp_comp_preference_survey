@@ -1,0 +1,1 @@
+{"method": "umap", "n_neighbors": 57, "min_dist": 0.667, "dataset": "mnist64"}

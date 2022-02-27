@@ -1,0 +1,1 @@
+{"method": "densmap", "n_neighbors": 95, "min_dist": 0.812, "dataset": "mnist64"}

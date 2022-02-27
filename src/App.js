@@ -3,20 +3,17 @@ import { useLocation } from "react-router-dom";
 
 function App({match}) {
 
-  const mainViewSize = 500;
+  const mainViewSize = 600;
   const gridCellSize = 70;
   const gridMargin = 5;
-  const column = 20;
+  const column = 16;
   const projectionNum = 150;
   const mainViewRadius = 7.5;
-  const gridCellRadius = 3;
+  const gridCellRadius = 2;
 
   const urls = window.location.href.split("/");
   const labelStr = urls[urls.length - 1];
   const isLabel = labelStr === "label";
-
-  
-
 
 
 

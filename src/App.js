@@ -1,4 +1,4 @@
-import Survey from "./components/Survery";
+import Survey from "./components/Survey";
 import { useLocation } from "react-router-dom";
 
 function App({match}) {

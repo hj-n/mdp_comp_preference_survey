@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import SplotCanvas from './SplotCanvas';
 
 import * as d3 from 'd3';
@@ -26,6 +26,8 @@ const Scatterplot = (props) => {
 
 	const svgRef = useRef(null);
 
+
+
 	if (props.makeScoreBar) {
 
 		d3.select(svgRef.current).selectAll("rect").remove();
@@ -45,6 +47,16 @@ const Scatterplot = (props) => {
 
 	}
 
+	useEffect(() => {
+		if (!props.makeScoreBar) {
+			d3.select(svgRef.current).attr("height", 0)
+		}
+	})
+	
+
+
+			
+
 	
 
 
@@ -58,13 +70,13 @@ const Scatterplot = (props) => {
 				radius={props.radius}
 				isCurr={props.isCurr}
 			/>
-			{props.makeScoreBar & 
-				<svg
-					width={size}
-					height={rectSize}
-					ref={svgRef}
-				/>
-			}
+
+			<svg
+				width={size}
+				height={rectSize}
+				ref={svgRef}
+			/>
+			
 			
 		</div>
 	)

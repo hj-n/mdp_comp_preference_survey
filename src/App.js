@@ -1,5 +1,6 @@
+import { useState } from "react";
+
 import Survey from "./components/Survey";
-import { useLocation } from "react-router-dom";
 
 function App({match}) {
 
@@ -14,18 +15,31 @@ function App({match}) {
 
   const urls = window.location.href.split("/");
   const labelStr = urls[urls.length - 1];
-  const isLabel = labelStr === "label";
 
   // generate a array of projectionNum with random order
 	const projectionOrder = [];
 	for (let i = 0; i < projectionNum; i++) projectionOrder.push(i); 
 	projectionOrder.sort(() => Math.random() - 0.5);
 
+  const [isLabel, setIsLabel] = useState(false);
+
+  const onChangeSelect = (e) => {
+    const newIsLabel = e.target.value === "label";
+    console.log(newIsLabel)
+    setIsLabel(newIsLabel);
+  }
+
 
   return (
     <div className="App">
       <header className="App-header">
-      <h1> Preference survey </h1> 
+      <div style={{display: "flex"}}>
+        <h1> Preference survey </h1> 
+        <select style={{height: 40, width: 100, margin: 20}} onChange={onChangeSelect}>
+          <option value="nolabel" >No Label</option>
+          <option value="label"  >Label</option>
+        </select>
+      </div>
       </header>
       <Survey 
         mainViewSize={mainViewSize}

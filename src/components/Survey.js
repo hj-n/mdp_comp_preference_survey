@@ -63,7 +63,7 @@ const Survey = (props) => {
 		}
 
 		(async () => {
-			const fileName = "result.json";
+			const fileName = props.isLabel ? "label.json" : "nolabel.json";
 			const json = JSON.stringify(newProjectionScores);
 			const blob = new Blob([json],{type:'application/json'});
 			const href = await URL.createObjectURL(blob);

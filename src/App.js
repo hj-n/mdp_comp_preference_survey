@@ -34,7 +34,7 @@ function App({match}) {
     <div className="App">
       <header className="App-header">
       <div style={{display: "flex"}}>
-        <h1> Preference survey </h1> 
+        <h1> Preference survey- bug fixed </h1> 
         <select style={{height: 40, width: 100, margin: 20}} onChange={onChangeSelect}>
           <option value="nolabel" >No Label</option>
           <option value="label"  >Label</option>

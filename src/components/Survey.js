@@ -58,8 +58,16 @@ const Survey = (props) => {
 	const onClickSaveButton = (e) => {
 		// change the order of projection scores to match the order of projectionOrder
 		const newProjectionScores = [];
-		for (let i = 0; i < projectionOrder.length; i++) {
-			newProjectionScores.push(projectionScores[projectionOrder[i]]);
+		for (let oIdx = 0; oIdx < projectionOrder.length; oIdx++) {
+			// find index that have oIdx as value in projectionOrder
+			
+			const index = projectionOrder.indexOf(oIdx);
+			// console.log(index, projectionScores);
+			newProjectionScores.push(projectionScores[index]);
+
+			// console.log(newProjectionScores)
+
+			// newProjectionScores.push(projectionScores[projectionOrder[i]]);
 		}
 
 		(async () => {
